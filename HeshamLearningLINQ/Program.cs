@@ -10,6 +10,16 @@ namespace HeshamLearningLINQ
             List<Employee> employees = Data.GetEmployees();
             List<Department> departments = Data.GetDepartments();
 
+            employees.Add(new Employee
+            {
+                Id = 5,
+                FirstName = "Hesham",
+                LastName = "Saif",
+                AnnualSalary = 50000,
+                IsManager = true,
+                DepartmentId = 2
+            });
+
             bool keepRunning = true;
 
             while (keepRunning)
@@ -24,7 +34,8 @@ namespace HeshamLearningLINQ
                 Console.WriteLine("6 - Employees with Salary > 40000");
                 Console.WriteLine("7 - Employees with Salary <= 40000");
                 Console.WriteLine("8 - All Employees with Department Names");
-                Console.WriteLine("9 - Exit");
+                Console.WriteLine("9 - All Managers");
+                Console.WriteLine("10 - Exit");
 
                 Console.Write("\nEnter a number: ");
                 string userChoice = Console.ReadLine();
@@ -125,8 +136,18 @@ namespace HeshamLearningLINQ
                     {
                         Console.WriteLine($"{item.Name,-20} | {item.Department,-25} | Salary: {item.Salary}");
                     }
+                } else if (userChoice == "9")
+                {
+                    Console.WriteLine("\n---- All Managers ----");
+                    var query = from emp in employees
+                                where emp.IsManager
+                                select emp;
+                    foreach (var emp in query)
+                    {
+                        Console.WriteLine($"{emp.FirstName} {emp.LastName} - {emp.AnnualSalary}");
+                    }
                 }
-                else if (userChoice == "9")
+                else if (userChoice == "10")
                 {
                     Console.WriteLine("\nOk, Goodbye!");
                     break;
