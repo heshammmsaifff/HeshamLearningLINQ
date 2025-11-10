@@ -14,6 +14,7 @@ namespace HeshamLearningLINQ
 
             while (keepRunning)
             {
+                Console.WriteLine("\n---- Main Menu ----");
                 Console.WriteLine("\nChoose an option:");
                 Console.WriteLine("1 - Show Employees");
                 Console.WriteLine("2 - Show Departments");
